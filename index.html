@@ -5,18 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://elven.gf/">
     <title>elven.gf</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/hack.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/hack.min.css" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div>
-    <h1>elven.gf is live</h1>
-    <p>under development, come back later ty</p>
-    <a href="oc.html">Overlapping Circles</a>
-    <br/>
-    <a href="bt.html">Blob Test</a>
-    <br/>
-    <a href="https://www.twitch.tv/EstherSkunk">twitch.tv/EstherSkunk</a>
-  </div>
+    <div class="container">
+        <div class="box bg-gradient">
+            <h1>elven.gf</h1>
+            <p>under development, come back later ty</p>
+            <p>this is where I have most of my digital 'stuff' that I think is worth sharing.</p>
+        </div>
+        <div class="box">
+            <a href="oc.html">Overlapping Circles</a>
+        </div>
+        <div class="box">
+            <a href="bt.html">Blob Test</a>
+        </div>
+        <div class="box">
+            <a href="https://www.twitch.tv/EstherSkunk">twitch.tv/EstherSkunk</a>
+        </div>
+        <div class="box">Box 5</div>
+        <div class="box">Box 6</div>
+    </div>
+    <script>
+  // helper: random hex color
+  function getRandomColor() {
+    return `hsl(${Math.floor(Math.random() * 360)}, 70%, 50%)`;
+  }
+
+  // assign random background to each box
+  document.querySelectorAll('.box').forEach(box => {
+    box.style.background = getRandomColor();
+  });
+    </script>
 </body>
 </html>
