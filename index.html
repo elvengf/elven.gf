@@ -28,15 +28,17 @@
         <div class="box">Box 6</div>
     </div>
     <script>
-  // helper: random hex color
-  function getRandomColor() {
-    return `hsl(${Math.floor(Math.random() * 360)}, 70%, 50%)`;
-  }
+        document.addEventListener('DOMContentLoaded', () => {
+            // helper: random color
+            function getRandomColor() {
+                return `hsl(${Math.floor(Math.random() * 360)}, 70%, 50%)`;
+            }
 
-  // assign random background to each box
-  document.querySelectorAll('.box').forEach(box => {
-    box.style.background = getRandomColor();
-  });
+            // assign random background to each box
+            document.querySelectorAll('.box').forEach(box => {
+                box.style.background = getRandomColor();
+            });
+        });
     </script>
 </body>
 </html>
