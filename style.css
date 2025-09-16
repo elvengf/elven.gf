@@ -8,9 +8,9 @@ body {
 a {
     background-color: white;
 }
+
 .container {
     display: grid;
-    max-width: 960px;
     grid-template-columns: repeat(auto-fill, 480px); /* auto wraps */
     justify-content: start; /* align to left edge */
 }
@@ -24,6 +24,7 @@ a {
     justify-content: center; /* optional: center vertically */
     font-size: 24px;
     color: white;
+    transition: background-color 1s ease; /* glide effect */
 }
 
 .bg-gradient {

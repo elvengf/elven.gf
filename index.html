@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="box bg-gradient">
+        <div class="box">
             <h1>elven.gf</h1>
             <p>under development, come back later ty</p>
             <p>this is where I have most of my digital 'stuff' that I think is worth sharing.</p>
@@ -24,21 +24,41 @@
         <div class="box">
             <a href="https://www.twitch.tv/EstherSkunk">twitch.tv/EstherSkunk</a>
         </div>
-        <div class="box">Box 5</div>
-        <div class="box">Box 6</div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // helper: random color
-            function getRandomColor() {
-                return `hsl(${Math.floor(Math.random() * 360)}, 70%, 50%)`;
-            }
+    document.addEventListener('DOMContentLoaded', () => {
+        // helper: random color
+        function getRandomColor() {
+            return `hsl(${Math.floor(Math.random() * 360)}, 70%, 50%)`;
+        }
 
-            // assign random background to each box
-            document.querySelectorAll('.box').forEach(box => {
-                box.style.background = getRandomColor();
+        const boxes = document.querySelectorAll('.box');
+
+        // function to recolor all boxes
+        function recolorBoxes() {
+            boxes.forEach(box => {
+                box.style.backgroundColor = getRandomColor();
             });
-        });
-    </script>
+        }
+
+        // initial coloring
+        recolorBoxes();
+
+        // update every 1 second
+        setInterval(recolorBoxes, 3000);
+    });
+</script>
 </body>
 </html>
