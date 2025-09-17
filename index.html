@@ -12,36 +12,28 @@
     <div class="container">
         <div class="box">
             <h1>elven.gf</h1>
-            <p>under development, come back later ty</p>
-            <p>this is where I have most of my digital 'stuff' that I think is worth sharing.</p>
         </div>
         <div class="box">
-            <a href="oc.html">Overlapping Circles</a>
+            <p>this is where I have most of my digital 'stuff' that I think is worth sharing. the site works, but i have yet to add most of what i want. most boxes are clickable.</p>
         </div>
         <div class="box">
-            <a href="bt.html">Blob Test</a>
+            <p>if you want to contact me, send an email to any @elven.gf email address you want</p>
         </div>
-        <div class="box">
-            <a href="https://www.twitch.tv/EstherSkunk">twitch.tv/EstherSkunk</a>
+        <div class="box bg-elvengf" data-href="https://elvengf.bandcamp.com">
+            <span class="link-text">elvengf.bandcamp.com</span>
         </div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
+        <div class="box bg-esther" data-href="https://www.twitch.tv/EstherSkunk">
+            <span class="link-text">twitch.tv/estherskunk</span>
+        </div>
+        <div class="box" data-href="bt.html">
+            <span class="link-text">generative pixel blobs, used as a base for twitch stream background</span>
+        </div>
     </div>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         // helper: random color
         function getRandomColor() {
-            return `hsl(${Math.floor(Math.random() * 360)}, 70%, 50%)`;
+            return `hsl(${Math.floor(Math.random() * 360)}, 60%, 50%)`;
         }
 
         const boxes = document.querySelectorAll('.box');
@@ -58,6 +50,14 @@
 
         // update every 1 second
         setInterval(recolorBoxes, 3000);
+
+        //clicky boxes
+        document.querySelectorAll('.box[data-href]').forEach(box => {
+        box.style.cursor = "pointer";
+        box.addEventListener('click', () => {
+            window.location.href = box.getAttribute('data-href');
+        });
+});
     });
 </script>
 </body>

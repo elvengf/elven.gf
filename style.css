@@ -3,6 +3,7 @@ body {
     margin: 0;
     color: #fff;
     text-align: center;
+    
 }
 
 a {
@@ -24,17 +25,26 @@ a {
     justify-content: center; /* optional: center vertically */
     font-size: 24px;
     color: white;
-    transition: background-color 1s ease; /* glide effect */
+    transition: background-color 2s ease; /* glide effect */
+}
+.box[data-href]:hover {
+    outline: 24px ridge rgba(255, 255, 255, 0.5);
+    outline-offset: -24px; /* negative offset pushes it inward */
+}
+.link-text {
+    background-color: white;
+    color: black;       /* make sure it’s readable */
+    border-radius: 4px; /* optional: rounded corners */
 }
 
 .bg-gradient {
-    background: linear-gradient(135deg, #747474, #A2A2A2);
+    background: linear-gradient(115deg, #000000, #3d3d3d) !important;
 }
 
-.bg-blue {
-    background: lightblue;
+.bg-esther {
+    background-image: url("esther480px.png") !important;
 }
 
-.bg-green {
-    background: seagreen;
+.bg-elvengf {
+    background-image: url("elvengf480px.png") !important;
 }
