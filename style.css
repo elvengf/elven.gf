@@ -12,7 +12,9 @@ a {
 
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 480px); /* auto wraps */
+    
+    grid-template-columns: repeat(2, 480px); /* auto wraps */
+    /* grid-template-columns: repeat(auto-fill, 480px); /* auto wraps */
     justify-content: start; /* align to left edge */
 }
 
