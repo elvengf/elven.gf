@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="font/hack.css" />
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="box bg-black" data-href="landing.html">
+<body class="index">
+    <div class="box bg-black centerbox" data-href="landing.html">
         <span class="link-text">enter the site by clicking here. some javascript is used.</span>
     </div>
     <script>
@@ -21,7 +21,10 @@
             box.addEventListener('click', function() {
                 var href = box.getAttribute('data-href');
                 if (href) {
-                    window.location.href = href;
+                    document.body.classList.add('fade-out');
+                    setTimeout(function() {
+                        window.location.href = href;
+                    }, 500);
                 }
             });
         }

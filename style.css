@@ -1,9 +1,22 @@
 body {
     font-family: 'Hack', monospace, sans-serif;
     margin: 0;
-    color: #fff;
     text-align: center;
     
+}
+.index {
+    background-image: url(images/starsagain.gif);
+    background-repeat: repeat;
+    color: black;
+}
+@keyframes scroll-bg {
+    0% { background-position: 0 0; }
+    100% { background-position: -100% 100%; }
+}
+.landing {
+    background-image: url(images/bubblespurplebg.jpg);
+    background-repeat: repeat;
+    animation: scroll-bg 20s linear infinite;
 }
 
 a {
@@ -12,14 +25,16 @@ a {
 
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 480px); /* auto wraps */
-    /* grid-template-columns: repeat(2, 480px); /* 2 boxes per row */
-    justify-content: start; /* align to left edge */
+    /* grid-template-columns: repeat(auto-fill, 504px); /* auto wraps */
+    grid-template-columns: repeat(2, auto); /* 2 boxes per row */
+    justify-content: center; /* align to left edge */
 }
 
+/* Box styles */
 .box {
-    width: 480px;
-    height: 480px;
+    width: 456px;
+    height: 456px;
+    padding: 24px; /* space for outline on hover */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,6 +45,11 @@ a {
     background-position: center;   /* center the image */
     background-size: 100% auto;    /* fit width, keep aspect ratio */
 }
+.topbox {
+    width: 960px; /* full width minus padding */
+    grid-column: 1 / -1; /* span full width of the grid */
+    font-size: 48px;
+}
 .box[data-href]:hover {
     outline: 24px ridge rgba(255, 255, 255, 0.5);
     outline-offset: -24px; /* negative offset pushes it inward */
@@ -39,23 +59,31 @@ a {
     color: black;       /* make sure it’s readable */
     border-radius: 4px; /* optional: rounded corners */
 }
+.centerbox {
+    position: absolute; /* position it absolutely */
+    top: 50%; /* move it down 50% of the viewport height */
+    left: 50%; /* move it right 50% of the viewport width */
+    transform: translate(-50%, -50%); /* center the box */
+}
 
+/* Background classes */
 .bg-gradient {
     background: linear-gradient(115deg, #000000, #3d3d3d) !important;
 }
-
 .bg-black {
     background: black !important;
 }
-
 .bg-esther {
     background-image: url("esther480px.png") !important;
 }
-
 .bg-elvengf {
     background-image: url("elvengf480px.png") !important;
 }
 
+/* Transition class for smooth color changes */
+.transition-bg {
+    transition: background-color 0s ease;
+}
 
 /* Mobile override */
 @media (max-width: 768px) {
