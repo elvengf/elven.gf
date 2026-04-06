@@ -94,8 +94,13 @@ a {
     }
 
     .box {
-        width: 75%;                  /* take full width */
+        width: 450px;                  /* take full width */
+        height: 450px;
         aspect-ratio: 1 / 1;          /* keep square shape */
         height: auto;                 /* let aspect-ratio handle height */
+    }
+
+    .topbox{
+        grid: 1 / 1;
     }
 }
