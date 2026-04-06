@@ -16,7 +16,8 @@ body {
 .landing {
     background-image: url(images/bubblespurplebg.jpg);
     background-repeat: repeat;
-    animation: scroll-bg 20s linear infinite;
+    animation: scroll-bg 60s linear infinite;
+    -webkit-animation: scroll-bg 60s linear infinite;
 }
 
 a {
@@ -93,7 +94,7 @@ a {
     }
 
     .box {
-        width: 100%;                  /* take full width */
+        width: 75%;                  /* take full width */
         aspect-ratio: 1 / 1;          /* keep square shape */
         height: auto;                 /* let aspect-ratio handle height */
     }
