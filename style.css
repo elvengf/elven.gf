@@ -47,6 +47,16 @@ a {
     background-position: center;   /* center the image */
     background-size: 100% auto;    /* fit width, keep aspect ratio */
 }
+.buttonbox {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    align-content: center;
+}
+.buttonbox img {
+    width: 88px;
+    height: auto;
+}
 .topbox {
     width: 960px; /* full width minus padding */
     grid-column: 1 / -1; /* span full width of the grid */
