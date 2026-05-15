@@ -86,14 +86,17 @@ a {
     background: black !important;
 }
 .bg-esther {
-    background-image: url("esther480px.png") !important;
+    background-image: url("images/esther480px.png") !important;
+}
+.bg-swirl {
+    background-image: url("images/swirl480px.png") !important;
 }
 .bg-elvengf {
-    background-image: url("elvengf480px.png") !important;
+    background-image: url("images/elvengf.png") !important;
 }
 
-/* Transition class for smooth color changes */
-.transition-bg {
+    /* Transition class for smooth color changes */
+    .transition-bg {
     transition: background-color 0s ease;
 }
 
