@@ -2,10 +2,9 @@ body {
     font-family: 'Hack', monospace, sans-serif;
     margin: 0;
     text-align: center;
-    
 }
 .index {
-    background-image: url(images/starsagain.gif);
+    background-image: url(images/bg/starsagain.gif);
     background-repeat: repeat;
     color: black;
 }
@@ -14,7 +13,7 @@ body {
     100% { background-position: -100% 100%; }
 }
 .landing {
-    background-image: url(images/bubblespurplebg.jpg);
+    background-image: url(images/bg/bubblespurplebg.jpg);
     background-repeat: repeat;
     animation: scroll-bg 60s linear infinite;
     -webkit-animation: scroll-bg 60s linear infinite;
@@ -86,10 +85,10 @@ a {
     background: black !important;
 }
 .bg-esther {
-    background-image: url("esther480px.png") !important;
+    /* background-image: url("images/esther480px.png") !important; */
 }
 .bg-elvengf {
-    background-image: url("elvengf480px.png") !important;
+    /* background-image: url("images/elvengf.png") !important; */
 }
 
 /* Transition class for smooth color changes */
