@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>elvengf</title>
-    <link rel="stylesheet" href="font/hack.css" />
+    <link rel="stylesheet" href="font/hack.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="landing">
@@ -59,9 +59,9 @@
             <img src="images/buttons/openmpt.png" alt="">
         </div>
     </div>
-    <script>
+    <script> //colour randomization
     document.addEventListener('DOMContentLoaded', () => {
-        // helper: random color
+        // helper: random colour
         function getRandomColor() {
             return `hsl(${Math.floor(Math.random() * 360)}, 60%, 50%)`;
         }
@@ -75,10 +75,10 @@
             });
         }
 
-        // initial coloring (no transition)
+        // initial colouring (no transition)
         recolorBoxes();
 
-        // Enable transition for future color changes
+        // Enable transition for future colour changes
         boxes.forEach(box => {
             box.classList.add('transition-bg');
         });
