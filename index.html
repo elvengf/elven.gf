@@ -14,21 +14,12 @@
     </div>
     <script>
     // Make the .box clickable
-    document.addEventListener('DOMContentLoaded', function() {
-        var box = document.querySelector('.box');
-        if (box) {
-            box.style.cursor = 'pointer';
-            box.addEventListener('click', function() {
-                var href = box.getAttribute('data-href');
-                if (href) {
-                    document.body.classList.add('fade-out');
-                    setTimeout(function() {
-                        window.location.href = href;
-                    }, 500);
-                }
+    document.querySelectorAll('.box[data-href]').forEach(box => {
+            box.style.cursor = "pointer";
+            box.addEventListener('click', () => {
+                window.location.href = box.getAttribute('data-href');
             });
-        }
-    });
+        });
     </script>
 </body>
 </html>

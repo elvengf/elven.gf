@@ -4,7 +4,7 @@ body {
     text-align: center;
 }
 .index {
-    background-image: url(images/bg/starsagain.gif);
+    background-image: url(images/bg/spacebg.gif);
     background-repeat: repeat;
     color: black;
 }
@@ -62,8 +62,8 @@ a {
     font-size: 40px;
 }
 .box[data-href]:hover {
-    outline: 24px ridge rgba(255, 255, 255, 0.5);
-    outline-offset: -24px; /* negative offset pushes it inward */
+    outline: 16px ridge rgba(255, 255, 255, 0.5);
+    outline-offset: -16px; /* negative offset pushes it inward */
 }
 .link-text {
     background-color: white;
