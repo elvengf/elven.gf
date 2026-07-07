@@ -1,19 +1,19 @@
 body {
     font-family: 'Hack', monospace, sans-serif;
-    margin: 0;
+    margin: 2em;
     text-align: center;
+}
+@keyframes scroll-bg {
+    0% { background-position: 0 0; }
+    100% { background-position: -100% 100%; }
 }
 .index {
     background-image: url(images/bg/spacebg.gif);
     background-repeat: repeat;
     color: black;
 }
-@keyframes scroll-bg {
-    0% { background-position: 0 0; }
-    100% { background-position: -100% 100%; }
-}
 .landing {
-    background-image: url(images/bg/bubblespurplebg.jpg);
+    background-image: url(images/bg/space_bg.gif);
     background-repeat: repeat;
     animation: scroll-bg 60s linear infinite;
     -webkit-animation: scroll-bg 60s linear infinite;
@@ -102,7 +102,6 @@ a {
         display: grid;
         /* grid-template-columns: repeat(auto-fill, 504px); /* auto wraps */
         grid-template-columns: repeat(2, auto); /* 4 boxes per row */
-        justify-content: left; /* align to left edge */
     }
 
     /* Box styles */
