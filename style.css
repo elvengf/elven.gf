@@ -164,8 +164,6 @@ a {
     }
 
     .container {
-        display: grid;
-        /* grid-template-columns: repeat(auto-fill, 504px); /* auto wraps */
         grid-template-columns: repeat(2, auto); /* 4 boxes per row */
     }
 
@@ -174,16 +172,8 @@ a {
         width: 40vw;
         height: 40vw;
         padding: 10px; /* space for outline on hover */
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
         font-size: 14px;
         color: white;
-        background-repeat: no-repeat;
-        background-position: center;   /* center the image */
-        background-size: 100% auto;    /* fit width, keep aspect ratio */
     }
     .buttonbox {
         display: grid;
@@ -194,25 +184,5 @@ a {
     .buttonbox img {
         width: 56px;
         height: auto;
-    }
-    .topbox {
-        width: 40vw; /* full width minus padding */
-        grid-column: 1 / 1; /* span full width of the grid */
-        font-size: 15px;
-    }
-    .box[data-href]:hover {
-        outline: 24px ridge rgba(255, 255, 255, 0.5);
-        outline-offset: -24px; /* negative offset pushes it inward */
-    }
-    .link-text {
-        background-color: white;
-        color: black;       /* make sure it’s readable */
-        border-radius: 4px; /* optional: rounded corners */
-    }
-    .centerbox {
-        position: absolute; /* position it absolutely */
-        top: 50%; /* move it down 50% of the viewport height */
-        left: 50%; /* move it right 50% of the viewport width */
-        transform: translate(-50%, -50%); /* center the box */
     }
 }
