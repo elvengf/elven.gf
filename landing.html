@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="landing">
+    <!-- Background layer for the landing-page parallax effect -->
+    <div class="landing-bg" aria-hidden="true"></div>
+    <!-- Small toggle to enable or disable the parallax effect -->
+    <button class="parallax-toggle" type="button" aria-pressed="true" title="Toggle parallax">parallax: on</button>
     <div class="container">
         <div class="box topbox">
             <h1>elvengf</h1>
@@ -47,7 +51,6 @@
             <img src="images/buttons/abcgiant.gif" alt="">
             <img src="images/buttons/acab.gif" alt="">
             <img src="images/buttons/lapfoxgrid.gif" alt="">
-            <img src="images/buttons/linux_mint.gif" alt="">
             <img src="images/buttons/shybutton.gif" alt="">
             <img src="images/buttons/weedpizzatoebeans_now_edit.gif" alt="">
             <img src="images/buttons/dittodan_3.png" alt="">
@@ -59,13 +62,56 @@
             <img src="images/buttons/openmpt.png" alt="">
         </div>
     </div>
-    <script> //colour randomization
+    <script> 
     document.addEventListener('DOMContentLoaded', () => {
+        // Parallax setup for the landing page background
+        const background = document.querySelector('.landing-bg');
+        const toggle = document.querySelector('.parallax-toggle');
+        const maxOffset = -24;  // maximum offset for parallax effect, negative for inverse movement
+        const storageKey = 'elvengf-parallax-enabled';
+        let enabled = localStorage.getItem(storageKey) !== 'false';
+
+        const updateParallax = (event) => {
+            if (!enabled) return;
+            const x = ((event.clientX / window.innerWidth) - 0.5) * maxOffset;
+            const y = ((event.clientY / window.innerHeight) - 0.5) * maxOffset;
+            background.style.setProperty('--parallax-x', `${x}px`);
+            background.style.setProperty('--parallax-y', `${y}px`);
+        };
+
+        const resetParallax = () => {
+            background.style.setProperty('--parallax-x', '0px');
+            background.style.setProperty('--parallax-y', '0px');
+        };
+
+        if (background) {
+            window.addEventListener('mousemove', updateParallax);
+            window.addEventListener('mouseleave', resetParallax);
+            window.addEventListener('touchmove', resetParallax, { passive: true });
+        }
+
+        if (toggle) {
+            toggle.setAttribute('aria-pressed', String(enabled));
+            toggle.textContent = `parallax: ${enabled ? 'on' : 'off'}`;
+
+            toggle.addEventListener('click', () => {
+                enabled = !enabled;
+                localStorage.setItem(storageKey, String(enabled));
+                toggle.setAttribute('aria-pressed', String(enabled));
+                toggle.textContent = `parallax: ${enabled ? 'on' : 'off'}`;
+
+                if (!enabled) {
+                    resetParallax();
+                }
+            });
+        }
+
         // helper: random colour
         function getRandomColor() {
             return `hsl(${Math.floor(Math.random() * 360)}, 60%, 50%)`;
         }
 
+        // apply to all .box div elements
         const boxes = document.querySelectorAll('.box');
 
         // function to recolor all boxes
@@ -86,12 +132,27 @@
         // update every 3 seconds
         setInterval(recolorBoxes, 3000);
 
-        //clicky boxes
+        // Make the clickable boxes navigate and support middle-click/new-tab opening
         document.querySelectorAll('.box[data-href]').forEach(box => {
             box.style.cursor = "pointer";
-            box.addEventListener('click', () => {
-                window.location.href = box.getAttribute('data-href');
-            });
+
+            const openBoxLink = (event) => {
+                const href = box.getAttribute('data-href');
+                if (!href) return;
+
+                if (event.button === 1 || event.metaKey || event.ctrlKey) {
+                    event.preventDefault();
+                    window.open(href, '_blank', 'noopener,noreferrer');
+                    return;
+                }
+
+                if (event.button === 0) {
+                    window.location.href = href;
+                }
+            };
+
+            box.addEventListener('click', openBoxLink);
+            box.addEventListener('auxclick', openBoxLink);
         });
     });
     </script>

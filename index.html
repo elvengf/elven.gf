@@ -9,17 +9,65 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="index">
+    <!-- Background layer for the index-page parallax effect -->
+    <div class="index-bg" aria-hidden="true"></div>
+    <!-- Small toggle to enable or disable the parallax effect -->
+    <button class="parallax-toggle" type="button" aria-pressed="true" title="Toggle parallax">parallax: on</button>
     <div class="box bg-black centerbox" data-href="landing.html">
         <span class="link-text">enter the site by clicking here. some javascript is used.</span>
     </div>
     <script>
-    // Make the .box clickable
-    document.querySelectorAll('.box[data-href]').forEach(box => {
+    document.addEventListener('DOMContentLoaded', () => {
+        // Parallax setup for the index page background
+        const background = document.querySelector('.index-bg');
+        const toggle = document.querySelector('.parallax-toggle');
+        const maxOffset = -24;
+        const storageKey = 'elvengf-parallax-enabled';
+        let enabled = localStorage.getItem(storageKey) !== 'false';
+
+        const updateParallax = (event) => {
+            if (!enabled) return;
+            const x = ((event.clientX / window.innerWidth) - 0.5) * maxOffset;
+            const y = ((event.clientY / window.innerHeight) - 0.5) * maxOffset;
+            background.style.setProperty('--parallax-x', `${x}px`);
+            background.style.setProperty('--parallax-y', `${y}px`);
+        };
+
+        const resetParallax = () => {
+            background.style.setProperty('--parallax-x', '0px');
+            background.style.setProperty('--parallax-y', '0px');
+        };
+
+        if (background) {
+            window.addEventListener('mousemove', updateParallax);
+            window.addEventListener('mouseleave', resetParallax);
+            window.addEventListener('touchmove', resetParallax, { passive: true });
+        }
+
+        if (toggle) {
+            toggle.setAttribute('aria-pressed', String(enabled));
+            toggle.textContent = `parallax: ${enabled ? 'on' : 'off'}`;
+
+            toggle.addEventListener('click', () => {
+                enabled = !enabled;
+                localStorage.setItem(storageKey, String(enabled));
+                toggle.setAttribute('aria-pressed', String(enabled));
+                toggle.textContent = `parallax: ${enabled ? 'on' : 'off'}`;
+
+                if (!enabled) {
+                    resetParallax();
+                }
+            });
+        }
+
+        // Make the centered entry box clickable
+        document.querySelectorAll('.box[data-href]').forEach(box => {
             box.style.cursor = "pointer";
             box.addEventListener('click', () => {
                 window.location.href = box.getAttribute('data-href');
             });
         });
+    });
     </script>
 </body>
 </html>
