@@ -9,7 +9,7 @@
 </head>
 <body class="landing">
     <!-- Background layer for the landing-page parallax effect -->
-    <div class="landing-bg" aria-hidden="true"></div>
+    <div class="page-bg" aria-hidden="true"></div>
     <!-- Small toggle to enable or disable the parallax effect -->
     <button class="parallax-toggle" type="button" aria-pressed="true" title="Toggle parallax">parallax: on</button>
     <div class="container">
@@ -65,46 +65,70 @@
     <script> 
     document.addEventListener('DOMContentLoaded', () => {
         // Parallax setup for the landing page background
-        const background = document.querySelector('.landing-bg');
+        const background = document.querySelector('.page-bg');
         const toggle = document.querySelector('.parallax-toggle');
         const maxOffset = -24;  // maximum offset for parallax effect, negative for inverse movement
         const storageKey = 'elvengf-parallax-enabled';
-        let enabled = localStorage.getItem(storageKey) !== 'false';
+        const mediaQuery = window.matchMedia('(max-width: 768px)');
+        let enabled = !mediaQuery.matches && localStorage.getItem(storageKey) !== 'false';
+
+        const resetParallax = () => {
+            if (background) {
+                background.style.setProperty('--parallax-x', '0px');
+                background.style.setProperty('--parallax-y', '0px');
+            }
+        };
 
         const updateParallax = (event) => {
-            if (!enabled) return;
+            if (!enabled || mediaQuery.matches || !background) return;
             const x = ((event.clientX / window.innerWidth) - 0.5) * maxOffset;
             const y = ((event.clientY / window.innerHeight) - 0.5) * maxOffset;
             background.style.setProperty('--parallax-x', `${x}px`);
             background.style.setProperty('--parallax-y', `${y}px`);
         };
 
-        const resetParallax = () => {
-            background.style.setProperty('--parallax-x', '0px');
-            background.style.setProperty('--parallax-y', '0px');
+        const syncToggle = () => {
+            const mobile = mediaQuery.matches;
+            if (toggle) {
+                toggle.style.display = mobile ? 'none' : '';
+                toggle.setAttribute('aria-pressed', String(!mobile && enabled));
+                toggle.textContent = `parallax: ${!mobile && enabled ? 'on' : 'off'}`;
+            }
+
+            if (mobile) {
+                resetParallax();
+            }
         };
 
-        if (background) {
+        if (background && !mediaQuery.matches) {
             window.addEventListener('mousemove', updateParallax);
             window.addEventListener('mouseleave', resetParallax);
             window.addEventListener('touchmove', resetParallax, { passive: true });
         }
 
         if (toggle) {
-            toggle.setAttribute('aria-pressed', String(enabled));
-            toggle.textContent = `parallax: ${enabled ? 'on' : 'off'}`;
+            syncToggle();
 
             toggle.addEventListener('click', () => {
+                if (mediaQuery.matches) return;
                 enabled = !enabled;
                 localStorage.setItem(storageKey, String(enabled));
-                toggle.setAttribute('aria-pressed', String(enabled));
-                toggle.textContent = `parallax: ${enabled ? 'on' : 'off'}`;
+                syncToggle();
 
                 if (!enabled) {
                     resetParallax();
                 }
             });
         }
+
+        window.addEventListener('resize', () => {
+            if (mediaQuery.matches) {
+                enabled = false;
+            } else {
+                enabled = localStorage.getItem(storageKey) !== 'false';
+            }
+            syncToggle();
+        });
 
         // helper: random colour
         function getRandomColor() {
@@ -114,23 +138,34 @@
         // apply to all .box div elements
         const boxes = document.querySelectorAll('.box');
 
-        // function to recolor all boxes
-        function recolorBoxes() {
-            boxes.forEach(box => {
-                box.style.backgroundColor = getRandomColor();
-            });
+        function applyColor(box, color, animate) {
+            box.style.setProperty('background-color', color);
+            box.classList.toggle('transition-bg', animate);
+            box.style.transition = animate ? '' : 'none';
         }
 
-        // initial colouring (no transition)
-        recolorBoxes();
+        function recolorBox(box, animate = false) {
+            applyColor(box, getRandomColor(), animate);
+        }
 
-        // Enable transition for future colour changes
+        // initial colours should appear solid before any fade transition starts
         boxes.forEach(box => {
-            box.classList.add('transition-bg');
+            applyColor(box, getRandomColor(), false);
         });
 
-        // update every 3 seconds
-        setInterval(recolorBoxes, 3000);
+        window.setTimeout(() => {
+            boxes.forEach(box => {
+                box.classList.add('transition-bg');
+                box.style.transition = '';
+            });
+        }, 50);
+
+        boxes.forEach(box => {
+            const interval = 2000 + Math.floor(Math.random() * 2500);
+            setInterval(() => {
+                recolorBox(box, true);
+            }, interval);
+        });
 
         // Make the clickable boxes navigate and support middle-click/new-tab opening
         document.querySelectorAll('.box[data-href]').forEach(box => {
