@@ -90,24 +90,30 @@ a {
     background-position: center;   /* center the box image if it exists */
     background-size: 100% auto;    /* fit width, keep aspect ratio */
 }
-.buttonbox {
+.buttonbox { /* container for 88buttons */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
     gap: 0;
 }
-.buttonbox img {
+.buttonbox img { 
     width: 88px;
     height: auto;
 }
-.topbox {
+.topbox { /* title box for landing page */
     width: 572px; /* 512 + 60 */
     grid-column: 1 / 3; /* span twice width of box */
     font-size: 40px;
 }
 .box[data-href]:hover {
     outline: 16px ridge rgba(255, 255, 255, 0.5);
-    outline-offset: -16px; /* negative offset pushes hover outline inward */
+    outline-offset: -16px;
+    /*negativeoffsetpusheshoveroutlineinward*/margin: 0 10px 20px 10px;
+    transition: margin 0.2s ease;
+    -webkit-transition: margin 0.2s ease;
+    -moz-transition: margin 0.2s ease;
+    -ms-transition: margin 0.2s ease;
+    -o-transition: margin 0.2s ease;
 }
 .link-text {
     background-color: white;
