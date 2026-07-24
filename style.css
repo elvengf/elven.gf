@@ -86,9 +86,17 @@ a {
     justify-content: center;
     font-size: 20px;
     color: white;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
     background-repeat: no-repeat;
     background-position: center;   /* center the box image if it exists */
     background-size: 100% auto;    /* fit width, keep aspect ratio */
+}
+
+.box > * {
+    position: relative;
+    z-index: 1;
 }
 .buttonbox { /* container for 88buttons */
     display: grid;
@@ -148,11 +156,25 @@ a {
 .bg-black {
     background: black !important;
 }
-.bg-esther {
-    /* background-image: url("images/esther480px.png") !important; */
+.bg-esther::before,
+.bg-elvengf::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
 }
-.bg-elvengf {
-    /* background-image: url("images/elvengf.png") !important; */
+
+.bg-esther::before {
+    background-image: url("images/esther480px.png");
+}
+
+.bg-elvengf::before {
+    background-image: url("images/elvengf.png");
 }
 
 /* Transition class for smooth color changes */

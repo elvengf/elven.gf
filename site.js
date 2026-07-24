@@ -4,7 +4,7 @@
     const toggle = document.querySelector('.parallax-toggle');
     const maxOffset = -24;
     const storageKey = 'elvengf-parallax-enabled';
-    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    const mediaQuery = window.matchMedia('(max-width: 960px)');
     let enabled = !mediaQuery.matches && localStorage.getItem(storageKey) !== 'false';
 
     // Reset the background transform to its resting position
