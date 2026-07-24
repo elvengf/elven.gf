@@ -13,85 +13,11 @@
     <div class="page-bg" aria-hidden="true"></div>
     <!-- Small toggle to enable or disable the parallax effect -->
     <button class="parallax-toggle" type="button" aria-pressed="true" title="Toggle parallax">parallax: on</button>
+    <!-- Centered box to enter main site -->
     <div class="box bg-black centerbox" data-href="landing.html">
         <span class="link-text">enter the site by clicking here. some javascript is used.</span>
     </div>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Parallax setup for the index page background
-        const background = document.querySelector('.page-bg');
-        const toggle = document.querySelector('.parallax-toggle');
-        const maxOffset = -24;
-        const storageKey = 'elvengf-parallax-enabled';
-        const mediaQuery = window.matchMedia('(max-width: 768px)');
-        let enabled = !mediaQuery.matches && localStorage.getItem(storageKey) !== 'false';
-
-        const resetParallax = () => {
-            if (background) {
-                background.style.setProperty('--parallax-x', '0px');
-                background.style.setProperty('--parallax-y', '0px');
-            }
-        };
-
-        const updateParallax = (event) => {
-            if (!enabled || mediaQuery.matches || !background) return;
-            const x = ((event.clientX / window.innerWidth) - 0.5) * maxOffset;
-            const y = ((event.clientY / window.innerHeight) - 0.5) * maxOffset;
-            background.style.setProperty('--parallax-x', `${x}px`);
-            background.style.setProperty('--parallax-y', `${y}px`);
-        };
-
-        const syncToggle = () => {
-            const mobile = mediaQuery.matches;
-            if (toggle) {
-                toggle.style.display = mobile ? 'none' : '';
-                toggle.setAttribute('aria-pressed', String(!mobile && enabled));
-                toggle.textContent = `parallax: ${!mobile && enabled ? 'on' : 'off'}`;
-            }
-
-            if (mobile) {
-                resetParallax();
-            }
-        };
-
-        if (background && !mediaQuery.matches) {
-            window.addEventListener('mousemove', updateParallax);
-            window.addEventListener('mouseleave', resetParallax);
-            window.addEventListener('touchmove', resetParallax, { passive: true });
-        }
-
-        if (toggle) {
-            syncToggle();
-
-            toggle.addEventListener('click', () => {
-                if (mediaQuery.matches) return;
-                enabled = !enabled;
-                localStorage.setItem(storageKey, String(enabled));
-                syncToggle();
-
-                if (!enabled) {
-                    resetParallax();
-                }
-            });
-        }
-
-        window.addEventListener('resize', () => {
-            if (mediaQuery.matches) {
-                enabled = false;
-            } else {
-                enabled = localStorage.getItem(storageKey) !== 'false';
-            }
-            syncToggle();
-        });
-
-        // Make the centered entry box clickable
-        document.querySelectorAll('.box[data-href]').forEach(box => {
-            box.style.cursor = "pointer";
-            box.addEventListener('click', () => {
-                window.location.href = box.getAttribute('data-href');
-            });
-        });
-    });
-    </script>
+    <!-- JS file -->
+    <script src="site.js"></script>
 </body>
 </html>

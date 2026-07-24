@@ -13,6 +13,7 @@
     <!-- Small toggle to enable or disable the parallax effect -->
     <button class="parallax-toggle" type="button" aria-pressed="true" title="Toggle parallax">parallax: on</button>
     <div class="container">
+        <!-- boxes! -->
         <div class="box topbox">
             <h1>elvengf</h1>
         </div>
@@ -41,154 +42,28 @@
             <span class="link-text">buy magic the gathering cards from me</span>
         </div>
         <div class="box buttonbox">
-            <img src="images/buttons/unknown-2.png" alt="">
-            <img src="images/buttons/plasticlove.png" alt="">
-            <img src="images/buttons/playstation.gif" alt="">
-            <img src="images/buttons/queercoded.png" alt="">
-            <img src="images/buttons/transrights.png" alt="">
-            <img src="images/buttons/lin1.png" alt="">
-            <img src="images/buttons/graphicdesign2.png" alt="">
-            <img src="images/buttons/abcgiant.gif" alt="">
-            <img src="images/buttons/acab.gif" alt="">
-            <img src="images/buttons/lapfoxgrid.gif" alt="">
-            <img src="images/buttons/shybutton.gif" alt="">
-            <img src="images/buttons/weedpizzatoebeans_now_edit.gif" alt="">
-            <img src="images/buttons/dittodan_3.png" alt="">
-            <img src="images/buttons/hm (3).jpg" alt="">
-            <img src="images/buttons/a101.jpg" alt="">
-            <img src="images/buttons/a45.jpg" alt="">
-            <img src="images/buttons/a122.gif" alt="">
-            <img src="images/buttons/enby.png" alt="">
-            <img src="images/buttons/openmpt.png" alt="">
+            <a href="" aria-label="Button link"><img src="images/buttons/unknown-2.png" alt=""></a>
+            <a href="" aria-label="Button link"><img src="images/buttons/plasticlove.png" alt=""></a>
+            <a href="https://elven.gf/images/psp.png" aria-label="Button link"><img src="images/buttons/playstation.gif" alt=""></a>
+            <a href="" aria-label="Button link"><img src="images/buttons/queercoded.png" alt=""></a>
+            <a href="https://www.thetrevorproject.org/" aria-label="Button link"><img src="images/buttons/transrights.png" alt=""></a>
+            <a href="https://pop.system76.com/" aria-label="Button link"><img src="images/buttons/lin1.png" alt=""></a>
+            <a href="" aria-label="Button link"><img src="images/buttons/graphicdesign2.png" alt=""></a>
+            <a href="" aria-label="Button link"><img src="images/buttons/abcgiant.gif" alt=""></a>
+            <a href="" aria-label="Button link"><img src="images/buttons/acab.gif" alt=""></a>
+            <a href="https://msx.horse/" aria-label="Button link"><img src="images/buttons/lapfoxgrid.gif" alt=""></a>
+            <a href="" aria-label="Button link"><img src="images/buttons/shybutton.gif" alt=""></a>
+            <a href="https://crosslink.flaminglog.net/" aria-label="Button link"><img src="images/buttons/weedpizzatoebeans_now_edit.gif" alt=""></a>
+            <a href="" aria-label="Button link"><img src="images/buttons/dittodan_3.png" alt=""></a>
+            <a href="" aria-label="Button link"><img src="images/buttons/hm (3).jpg" alt=""></a>
+            <a href="" aria-label="Button link"><img src="images/buttons/a101.jpg" alt=""></a>
+            <a href="" aria-label="Button link"><img src="images/buttons/a45.jpg" alt=""></a>
+            <a href="" aria-label="Button link"><img src="images/buttons/a122.gif" alt=""></a>
+            <a href="" aria-label="Button link"><img src="images/buttons/enby.png" alt=""></a>
+            <a href="https://openmpt.org/" aria-label="Button link"><img src="images/buttons/openmpt.png" alt=""></a>
         </div>
     </div>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const background = document.querySelector('.page-bg'); // Parallax setup for the landing page background
-        const toggle = document.querySelector('.parallax-toggle');
-        const maxOffset = -24;  // maximum offset for parallax effect, negative for inverse movement
-        const storageKey = 'elvengf-parallax-enabled';
-        const mediaQuery = window.matchMedia('(max-width: 768px)');
-        let enabled = !mediaQuery.matches && localStorage.getItem(storageKey) !== 'false';
-
-        const resetParallax = () => {
-            if (background) {
-                background.style.setProperty('--parallax-x', '0px');
-                background.style.setProperty('--parallax-y', '0px');
-            }
-        };
-
-        const updateParallax = (event) => {
-            if (!enabled || mediaQuery.matches || !background) return;
-            const x = ((event.clientX / window.innerWidth) - 0.5) * maxOffset;
-            const y = ((event.clientY / window.innerHeight) - 0.5) * maxOffset;
-            background.style.setProperty('--parallax-x', `${x}px`);
-            background.style.setProperty('--parallax-y', `${y}px`);
-        };
-
-        const syncToggle = () => {
-            const mobile = mediaQuery.matches;
-            if (toggle) {
-                toggle.style.display = mobile ? 'none' : '';
-                toggle.setAttribute('aria-pressed', String(!mobile && enabled));
-                toggle.textContent = `parallax: ${!mobile && enabled ? 'on' : 'off'}`;
-            }
-
-            if (mobile) {
-                resetParallax();
-            }
-        };
-
-        if (background && !mediaQuery.matches) {
-            window.addEventListener('mousemove', updateParallax);
-            window.addEventListener('mouseleave', resetParallax);
-            window.addEventListener('touchmove', resetParallax, { passive: true });
-        }
-
-        if (toggle) {
-            syncToggle();
-
-            toggle.addEventListener('click', () => {
-                if (mediaQuery.matches) return;
-                enabled = !enabled;
-                localStorage.setItem(storageKey, String(enabled));
-                syncToggle();
-
-                if (!enabled) {
-                    resetParallax();
-                }
-            });
-        }
-
-        window.addEventListener('resize', () => {
-            if (mediaQuery.matches) {
-                enabled = false;
-            } else {
-                enabled = localStorage.getItem(storageKey) !== 'false';
-            }
-            syncToggle();
-        });
-
-        // helper: random colour
-        function getRandomColor() {
-            return `hsl(${Math.floor(Math.random() * 360)}, 60%, 50%)`;
-        }
-
-        // apply to all .box div elements
-        const boxes = document.querySelectorAll('.box');
-
-        function applyColor(box, color, animate) {
-            box.style.setProperty('background-color', color);
-            box.classList.toggle('transition-bg', animate);
-            box.style.transition = animate ? '' : 'none';
-        }
-
-        function recolorBox(box, animate = false) {
-            applyColor(box, getRandomColor(), animate);
-        }
-
-        // initial colours should appear solid before any fade transition starts
-        boxes.forEach(box => {
-            applyColor(box, getRandomColor(), false);
-        });
-
-        window.setTimeout(() => {
-            boxes.forEach(box => {
-                box.classList.add('transition-bg');
-                box.style.transition = '';
-            });
-        }, 50);
-
-        boxes.forEach(box => {
-            const interval = 2000 + Math.floor(Math.random() * 2500);
-            setInterval(() => {
-                recolorBox(box, true);
-            }, interval);
-        });
-
-        // Make the clickable boxes navigate and support middle-click/new-tab opening
-        document.querySelectorAll('.box[data-href]').forEach(box => {
-            box.style.cursor = "pointer";
-
-            const openBoxLink = (event) => {
-                const href = box.getAttribute('data-href');
-                if (!href) return;
-
-                if (event.button === 1 || event.metaKey || event.ctrlKey) {
-                    event.preventDefault();
-                    window.open(href, '_blank', 'noopener,noreferrer');
-                    return;
-                }
-
-                if (event.button === 0) {
-                    window.location.href = href;
-                }
-            };
-
-            box.addEventListener('click', openBoxLink);
-            box.addEventListener('auxclick', openBoxLink);
-        });
-    });
-    </script>
+    <!-- JS file -->
+    <script src="site.js"></script>
 </body>
 </html>
