@@ -68,7 +68,6 @@ a {
     position: relative;
     z-index: 1;
     display: grid; /* use grid layout */
-    /* grid-template-columns: repeat(auto-fill, 504px); /* auto wraps */
     grid-template-columns: repeat(4, auto); /* 4 boxes per row */
     justify-content: center; /* align to center */
 }
