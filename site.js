@@ -94,8 +94,6 @@
     });
 
     // Randomized color cycling for the landing-page content boxes
-    const boxes = document.querySelectorAll('.box');
-
     function getRandomColor() {
         return `hsl(${Math.floor(Math.random() * 360)}, 60%, 50%)`;
     }
@@ -112,24 +110,32 @@
         applyColor(box, getRandomColor(), animate);
     }
 
-    // Give each box an initial color before transitions are allowed to kick in
-    boxes.forEach((box) => {
+    function initializeBox(box) {
+        if (box.dataset.colorInitialized) return;
+        box.dataset.colorInitialized = 'true';
         applyColor(box, getRandomColor(), false);
-    });
-
-    // After a short delay, turn on the CSS transition so later color changes fade
-    window.setTimeout(() => {
-        boxes.forEach((box) => {
+        window.setTimeout(() => {
             box.classList.add('transition-bg');
             box.style.transition = '';
-        });
-    }, 10);
-
-    // Randomly recolor each box at its own interval so the landing page feels alive
-    boxes.forEach((box) => {
+        }, 10);
         const interval = 2000 + Math.floor(Math.random() * 2500);
         window.setInterval(() => {
             recolorBox(box, true);
         }, interval);
-    });
+    }
+
+    document.querySelectorAll('.box').forEach(initializeBox);
+
+    const container = document.querySelector('.container');
+    if (container) {
+        new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType !== Node.ELEMENT_NODE) return;
+                    if (node.matches('.box')) initializeBox(node);
+                    node.querySelectorAll('.box').forEach(initializeBox);
+                });
+            });
+        }).observe(container, { childList: true, subtree: true });
+    }
 })();
