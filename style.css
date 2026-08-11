@@ -90,7 +90,7 @@ a {
     isolation: isolate;
     background-repeat: no-repeat;
     background-position: center;   /* center the box image if it exists */
-    background-size: 100% auto;    /* fit width, keep aspect ratio */
+    background-size: contain;    /* fit width, keep aspect ratio */
 }
 
 .box > * {
@@ -113,11 +113,17 @@ a {
     width: 88px;
     height: auto;
 }
-.topbox { /* title box for landing page */
+.twobox { /* title box for landing page */
     width: 572px; /* 512 + 60 */
-    grid-column: 1 / 3; /* span twice width of box */
+    grid-column: span 2; /* span twice width of box */
     font-size: 40px;
 }
+.art-box {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .box[data-href] {
     cursor: pointer;
     outline: 0 solid transparent;
@@ -147,7 +153,6 @@ a {
     transform: translate(-50%, -50%);
     margin: 0;
 }
-
 /* Background classes */
 .bg-gradient {
     background: linear-gradient(115deg, #000000, #3d3d3d) !important;
