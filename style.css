@@ -200,6 +200,9 @@ a {
 /* Mobile override */
 @media (max-width: 960px) {
 
+    .landing {
+        margin: 1em;
+    }
     .parallax-toggle {
         display: none !important;
     }
@@ -214,13 +217,14 @@ a {
 
     /* Box styles */
     .box {
-        width: 200px;
-        height: 200px;
+        width: 40vw;
+        height: 40vw;
         font-size: 16px;
+        padding: 10px;
         color: white;
     }
     .twobox {
-        width: 460px;
+        width: auto;
         font-size: 26px;
     }
     .buttonbox {
