@@ -214,11 +214,14 @@ a {
 
     /* Box styles */
     .box {
-        width: 40vw;
-        height: 40vw;
-        padding: 10px; /* space for outline on hover */
-        font-size: 14px;
+        width: 200px;
+        height: 200px;
+        font-size: 16px;
         color: white;
+    }
+    .twobox {
+        width: 460px;
+        font-size: 26px;
     }
     .buttonbox {
         display: grid;
